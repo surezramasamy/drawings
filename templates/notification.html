@@ -1,0 +1,109 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>  </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
+  </head>
+  <body>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+
+    <div class="jumbotron">
+
+    <h1>Company Name </h1>
+
+
+      <nav class="navbar navbar-default navbar-static-top"
+      <ul  class="nav navbar-nav"><br>
+
+    <h2><a class="navbar-link", href="{% url "admin:index" %}">Login</a></h2>
+	  <h2><a class="navbar-link", href="{% url "index" %}">Notifications</a></h2>
+    <h2><a class="navbar-link", href="{% url "home" %}">Back to Homepage</a></h2>
+
+
+
+
+      </nav>
+
+
+
+
+
+
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #151B54;
+  color: white;
+}
+</style>
+
+<h2><a class="navbar-link", href="{% url "create" %}">Raise a Notification</a></h2>
+
+
+
+         {% if notify %}
+               <p> REV-01 14.07.2021</p>
+
+
+         <table id="customers">
+             <caption>Notifications</caption>
+            <thead>
+              <th>Date</th>
+              <th>Information</th>
+              <th>Action_required</th>
+			    <th>Raised_by</th>
+                <th>Status</th>
+				<th>Remarks</th>
+
+
+           </thead>
+
+
+
+
+
+              {% for n in notify %}
+               {% if n.Status == "open" %}
+
+
+
+             <tr>
+               <td>{{n.date}}</td>
+               <td>{{n.Information}}</td>
+                <td>{{n.Action_required}}</td>
+				<td>{{n.Raised_by}}</td>
+               <td>{{n.Status}}</td>
+			   <td>{{n.Remarks}}</td>
+
+
+
+             </tr>
+
+              {% endif %}
+             {% endfor %}
+         </table>
+
+          {% else %}
+        <p>No pending Notifications</p>
+
+      {% endif %}
